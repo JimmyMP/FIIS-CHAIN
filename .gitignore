@@ -1,0 +1,12 @@
+Rust/target
+Rust/res
+Rust/neardev
+
+AssemblyScript/node_modules
+AssemblyScript/build
+AssemblyScript/neardev
+
+JavaScript/node_modules
+JavaScript/build
+JavaScript/neardev
+JavaScript/package-lock.json

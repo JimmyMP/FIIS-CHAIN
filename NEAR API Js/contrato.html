@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Near Contract Methods</title>
+  <script src="https://cdn.jsdelivr.net/npm/near-api-js@0.45.1/dist/near-api-js.min.js"></script>
+</head>
+
+<body>
+  <nav>
+    <div><a href="index.html">home</a></div>
+    <div><a href="login.html">login</a></div>
+    <div><a href="contrato.html">contract</a></div>
+  </nav>
+  <hr />
+  <button id="eliminar">Eliminar Participante</button> <input type="text" id="eliminar-cuenta" placeholder="cuenta" />
+  <br />
+  <button id="registrar">Registrar Participante</button> <input type="text" id="registrar-nombre" placeholder="nombre" /> <input
+    type="number" id="registrar-edad" placeholder="edad" />
+  <br />
+  <button id="obtener">Obtener Participante</button> <input type="text" id="obtener-cuenta" placeholder="cuenta" />
+  <br />
+  <button id="obtener-todos">Obtener Todos los Participantes</button>
+  <br />
+  <button id="certificar">Certificar Participante</button> <input type="text" id="certificar-cuenta" placeholder="cuenta" />
+
+  <script>
+    (async () => {
+      const { connect, keyStores, WalletConnection, Contract } = nearApi;
+
+      const CONTRACT_ID = 'jimmymp.testnet';
+
+
+
+      const NETWORK = 'testnet';
+      function config(network = NETWORK) {
+        return {
+          testnet: {
+            networkId: 'testnet',
+            keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+            nodeUrl: 'https://rpc.testnet.near.org',
+            walletUrl: 'https://testnet.mynearwallet.com/',
+            helperUrl: 'https://helper.testnet.near.org',
+            explorerUrl: 'https://testnet.nearblocks.io'
+          },
+          mainnet: {
+            networkId: 'mainnet',
+            keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+            nodeUrl: 'https://rpc.mainnet.near.org',
+            walletUrl: 'https://wallet.mainnet.near.org',
+            helperUrl: 'https://helper.mainnet.near.org',
+            explorerUrl: 'https://nearblocks.io'
+          }
+        }[network];
+      }
+
+      const near = await connect(config());
+      const wallet = new WalletConnection(near, `${NETWORK}-custom-prefix`); // supports logging in with different keys on the same domain
+
+
+
+      const contract = new Contract(wallet.account(), CONTRACT_ID, {
+        viewMethods: ['get_participante', 'get_participantes'],
+        changeMethods: ['eliminar_participante', 'set_participante', 'set_certificado']
+      });
+
+      const dom = setupDOMBindings();
+      if (wallet.isSignedIn()) {
+        dom.btnEliminar.addEventListener('click', async () => {
+            console.log('eliminando cuenta');
+            await contract.eliminar_participante({ cuenta: dom.txtEliminarCuenta.value });
+            console.log('cuenta eliminada');
+        });
+
+        dom.btnRegistrar.addEventListener('click', async () => {
+            console.log('agregando cuenta');
+            await contract.set_participante({
+                meta: "some info",
+                args: {
+                    nombre: dom.txtRegistrarNombre.value,
+                    edad: parseInt(dom.txtRegistrarEdad.value)
+                },
+                amount: '1000000000000000000000000'
+            });
+            console.log('cuenta agregada');
+        });
+
+        dom.btnObtener.addEventListener('click', async () => {
+          const participante = await contract.get_participante({ cuenta: dom.txtObtenerCuenta.value });
+          console.log(participante);
+        });
+
+        dom.btnObtenerTodos.addEventListener('click', async () => {
+          try {
+            const participantes = await contract.get_participantes();
+            console.log(participantes);
+            } catch (e) {
+                console.error('Error al eliminar participante:', e);
+            }
+        });
+
+        dom.btnCertificar.addEventListener('click', async () => {
+          await contract.set_certificado({ cuenta: dom.txtCertificarCuenta.value });
+        });
+      }
+
+      function setupDOMBindings() {
+        return {
+          btnEliminar: document.querySelector('#eliminar'),
+          txtEliminarCuenta: document.querySelector('#eliminar-cuenta'),
+          btnRegistrar: document.querySelector('#registrar'),
+          txtRegistrarNombre: document.querySelector('#registrar-nombre'),
+          txtRegistrarEdad: document.querySelector('#registrar-edad'),
+          btnObtener: document.querySelector('#obtener'),
+          txtObtenerCuenta: document.querySelector('#obtener-cuenta'),
+          btnObtenerTodos: document.querySelector('#obtener-todos'),
+          btnCertificar: document.querySelector('#certificar'),
+          txtCertificarCuenta: document.querySelector('#certificar-cuenta')
+        };
+      }
+    })();
+  </script>
+</body>
+
+</html>
