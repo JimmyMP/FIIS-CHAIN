@@ -58,6 +58,8 @@
     <div style="background-color: white; width: 600px; height: 400px; margin: 100px auto; padding: 20px;">
       <h2 id="modal-title" style="text-align: center;"></h2>
       <p id="modal-description"></p>
+      <input type="text" id="donation-amount" placeholder="Ingrese la cantidad a donar">
+      <button onclick="donate()" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">Donar</button>
 
       <button onclick="closeModal()" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; margin-top: 20px;">Cerrar</button>
     </div>
@@ -173,16 +175,6 @@
           amount: '1000000000000000000000000'
             });
             console.log('cuenta agregada');
-            
-            // Display the registered participant in HTML
-            const participante = await contract.get_participante({ cuenta: dom.txtRegistrarNombre.value });
-            const participanteContainer = document.getElementById('participante-container');
-            const participanteElement = document.createElement('div');
-            participanteElement.innerHTML = `
-          <h3>${participante.nombre}</h3>
-          <p>Edad: ${participante.edad}</p>
-            `;
-            participanteContainer.appendChild(participanteElement);
         });
 
         dom.btnObtener.addEventListener('click', async () => {
