@@ -1,21 +1,18 @@
-# JavaScript Starter
-
-Esta es una plantilla que puedes usar como punto de inicio para tu proyecto.
 
 ## Contenido
 
 Este repositorio contiene un contrato inteligente con los siguientes métodos:
 ### Escritura:
-* `set_participante`
-* `set_certificado`
+* `set_proyecto`
+* `set_completado`
 ### Lectura:
-* `get_participante`
-* `get_participantes`
+* `get_proyecto`
+* `get_proyectos`
 
-El contrato se encuentra previamente desplegado en la cuenta `js.ncdsamples.testnet`. Puedes hacer llamadas al mismo de la siguiente manera:
+El contrato se encuentra previamente desplegado en la cuenta `jimmymp1379.testnet`. Puedes hacer llamadas al mismo de la siguiente manera:
 
 ```sh
-near view js.ncdsamples.testnet get_participantes
+near view jimmymp1379.testnet get_proyectos
 ```
 
 ## Uso
@@ -57,7 +54,7 @@ near dev-deploy build/contract.wasm
 Una vez compilado y desplegado tu proyecto, vamos a requerir identificar la cuenta neardev. Esta la puedes encontrar en el archivo `JavaScript/neardev/neardev`. Podemos almacenar este contrato en una variable de entorno ejecutando lo siguiente en la consola, y sustituyendo por tu cuenta de desarrollo:
 
 ```sh
-export CONTRATO=dev-0000000000000-000000000
+export CONTRATO=example.testnet
 ```
 
 Haciendo esto, podemos comprobar que la variable `CONTRATO` tiene almacenada nuestra cuenta dev.
@@ -68,25 +65,25 @@ echo $CONTRATO
 
 ### Métodos
 
-Lo primero que debemos hacer es registrar al menos un usuario en el contrato. Para esto utilizamos el método `set_oarticipante`. Este método requiere que se pague 1 NEAR para poder ser ejecutado. El método registra a la persona que lo está ejecutando como participante.
+Lo primero que debemos hacer es registrar al menos un proyecto en el contrato. Para esto utilizamos el método `set_proyecto`. Este método requiere que se pague 1 NEAR para poder ser ejecutado. El método registra a la persona que lo está ejecutando como proyecto.
 
 ```sh
-near call $CONTRATO set_participante '{"nombre":"Nombre Participante","edad":18}' --accountId tucuenta.testnet --amount 1
+near call $CONTRATO set_proyecto '{"nombre":"Proyecto","descripcion":"DescripcionProyecto","monto_total":150}' --accountId example.testnet --amount 1.1
 ```
 
 Ahora que tenemos al menos 1 participante, podemos utilizar los métodos de lectura. `get_participante` nos traerá la información específica de un participante dependiendo la cuenta que le enviemos como parámetro. Por otro lado, `get_participantes` nos trae la lista de todos los participantes registrados.
 
 ```sh
-near view $CONTRATO get_participante '{"cuenta":"cuenta.testnet"}'
+near view $CONTRATO get_proyecto '{"cuenta":"cuenta.testnet"}'
 ```
 
 ```sh
-near view $CONTRATO get_participantes
+near view $CONTRATO get_proyectos
 ```
 
-Por último, si queremos marcar como certificado a uno de los participantes registrados, podemos hacer uso del método `set_certificado`. Este método tiene una restricción en la que, si tu cuenta no es `aklassen.testnet` especificamente no te permitirá ejecutarlo. Esta es una forma de agregar una restricción a cuentas específicas. Puedes modificar esta cuenta en el código del contrato. Además, el método transfiere una compensación de 5 NEAR al participante por haber logrado su certificación.
+Por último, si queremos marcar como certificado a uno de los participantes registrados, podemos hacer uso del método `set_completado`. Este método tiene una restricción en la que, si tu cuenta no es `jimmymp1379.testnet` especificamente no te permitirá ejecutarlo. Esta es una forma de agregar una restricción a cuentas específicas. Puedes modificar esta cuenta en el código del contrato.
 
 ```sh
-near call $CONTRATO set_certificado '{"cuenta":"cuenta.testnet"}' --accountId cuenta.testnet
+near call $CONTRATO set_completado'{"cuenta":"cuenta.testnet"}' --accountId example.testnet
 ```
 
