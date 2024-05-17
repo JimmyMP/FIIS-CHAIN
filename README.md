@@ -28,4 +28,4 @@ Se abrirá una ventana del navegador donde podrás seleccionar tu wallet.
 
 * Código del contrato: `JavaScript/src/contract.ts`
 * Cuenta pre-desplegada: `jimmymp1379.testnet`
-Para más información del JavaScript ingresar al ReadMe de Javas
+* Para más información del JavaScript ingresar al ReadMe de Javascript
