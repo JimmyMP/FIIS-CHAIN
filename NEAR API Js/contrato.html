@@ -55,14 +55,16 @@
   </div>
 
   <div id="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 999;">
-    <div style="background-color: white; width: 600px; height: 400px; margin: 100px auto; padding: 20px;">
+    <div style="background-color: white; width: 600px; height: 500px; margin: 100px auto; padding: 20px;">
       <h2 id="modal-title" style="text-align: center;"></h2>
       <p id="modal-description"></p>
 
-      <input type="text" id="donation-nombre" placeholder="Ingrese nombre">
-      <input type="text" id="donation-amount" placeholder="Ingrese la cantidad a donar">
-      <button id="donar" onclick="donate()" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">Donar</button>
-
+      <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+        <input type="text" id="donation-nombre" placeholder="Ingrese nombre" style="margin-bottom: 10px;">
+        <input type="text" id="donation-amount" placeholder="Ingrese la cantidad a donar" style="margin-bottom: 10px;">
+        <p>Nota: Se aceptan donaciones a partir de 1000000000000000000000000 = 1 NEAR en adelante.</p>
+        <button id="donar" onclick="donate()" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">Donar</button>
+      </div>
       <button onclick="closeModal()" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; margin-top: 20px;">Cerrar</button>
     </div>
   </div>
