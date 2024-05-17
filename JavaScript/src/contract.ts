@@ -72,13 +72,56 @@ class StarterContract {
     near.log("Proyecto creado exitosamente.");
   }
 
+
+  /**
+   * Método de ESCRITURA para donar un proyecto
+   * El comando para utilizarlo en la terminal es:
+   *  >> near call $CONTRATO donar_proyecto'{"nombre":"Proyecto"}' --accountId example.testnet --amount 1.1
+   *    * $CONTRATO es una variable de entorno que contiene el id de la cuenta del contrato
+   * 
+   * @param nombre string que requiere el nombre del proyecto
+   * 
+   * Es necesario enviarle 1 NEAR (o más) como pago a este método.
+   * Como vamos a aceptar pagos con este método, lo marcamos como payableFunction.
+   * El método registra la cuenta que firma la tx cómo la cuenta del proyecto registrándose.
+   */
+
+  @call({ payableFunction: true })
+  donar_proyecto({ nombre}: { nombre: string}): void {
+
+    //Usamos el objeto near para obtener datos de la transacción.
+    const cuenta = near.signerAccountId();
+    const deposito = near.attachedDeposit();
+
+    //Hacemos validaciones. Queremos que:
+    //* No pongan 0 como monto_total, osea que el monto_total sea mayor a 0.
+    //* El nombre y descripcion tenga más de 3 caractéres.
+    //* Paguen 1 NEAR cada que se registren en el contrato.
+    assert(nombre.length >= 3, "El nombre debe contener 3 o más caractéres.");
+    assert(deposito >= ONE_NEAR, "Debes de pagar 1 NEAR para registrarte.");
+
+    let proyecto = this.proyectos.get(cuenta);
+    proyecto.monto_total -= Number(deposito);
+    //Guardamos la información en la blockchain.
+    //UnorderedMap requiere una clave y el dato a guardar.
+    //Dado a que se requiere una clave única, vamos a usar la cuenta como clave.
+    //Para más información consulta: https://docs.near.org/develop/contracts/basics#sdk-collections
+    this.proyectos.set(cuenta, proyecto);
+
+    //Le enviamos un mensaje de confirmación a la consola.
+    near.log("Proyecto donado exitosamente.");
+  }
+
+
+
+
   /**
    * Método de LECTURA que regresa un proyecto
    * El comando para utilizarlo en la terminal es:
    *  >> near view $CONTRATO get_proyecto '{"cuenta":"CUENTA.NEAR"}'
    * @param cuenta string que contiene la cuenta (key) del usuario a consultar
    */
-
+  
   @view({})
   get_proyecto({ cuenta }: { cuenta: string }) {
     return this.proyectos.get(cuenta);

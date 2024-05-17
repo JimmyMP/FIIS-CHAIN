@@ -12,14 +12,14 @@
 
 <body>
     <nav style="height: 50px; background-color: #FFD119; display: flex; align-items: center; width:100%; border: 1px solid black;">
-      <div style="padding: 10px 20px"><img src="logo.png" alt="Logo" style="width: 50px; height: 50px;"></div>
+      <div style="padding: 10px 20px"><img src="media/logo.png" alt="Logo" style="width: 50px; height: 50px;"></div>
       <div style="flex-grow: 1; display: flex; justify-content: center;">
-        <a href="index.html" style="margin: 0 10px; text-decoration:none;">Home</a>
-        <a href="nosotros.html" style="margin: 0 10px; text-decoration:none;">Nosotros</a>
-        <a href="objetivos.html" style="margin: 0 10px; text-decoration:none;">Objetivos</a>
-        <a href="novedades.html" style="margin: 0 10px; text-decoration:none;">Novedades</a>
-        <a href="Voluntariado.html" style="margin: 0 10px; text-decoration:none;">Voluntariado</a>
-        <a href="contacto.html" style="margin: 0 10px; text-decoration:none;">Contacto</a>
+        <a href="#" style="margin: 0 10px; text-decoration:none;">Home</a>
+        <a href="#" style="margin: 0 10px; text-decoration:none;">Nosotros</a>
+        <a href="#" style="margin: 0 10px; text-decoration:none;">Objetivos</a>
+        <a href="#" style="margin: 0 10px; text-decoration:none;">Novedades</a>
+        <a href="#" style="margin: 0 10px; text-decoration:none;">Voluntariado</a>
+        <a href="#" style="margin: 0 10px; text-decoration:none;">Contacto</a>
       </div>
       <div style="padding: 10px 20px"><button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">Login</button></div>
     </nav>
@@ -29,25 +29,25 @@
   
   <div style="width: 50%; display: flex; justify-content: center; gap: 40px; flex-wrap:wrap; margin: 0 auto;">
     <div style=" display: flex; align-items: center;gap: 40px;">
-      <img src="proyecto1.jpg" alt="Proyecto 1" style="width: 200px; height: 200px;">
+      <img src="media/proyecto1.jpg" alt="Proyecto 1" style="width: 200px; height: 200px;">
       <button onclick="openModal('proyecto1')" style="cursor: pointer;background-color: #EF0DE7; color: white; font-weight: bold; border: 1px solid black;height:55px; width: 105px;font-size:x-large">
         Donar
       </button>
     </div>
     <div style="display: flex; align-items: center;gap: 40px;">
-      <img src="proyecto2.jpg" alt="Proyecto 2" style="width: 200px; height: 200px;">
+      <img src="media/proyecto2.jpg" alt="Proyecto 2" style="width: 200px; height: 200px;">
       <button onclick="openModal('proyecto2')" style=" cursor: pointer;background-color: #EF0DE7; color: white; font-weight: bold; border: 1px solid black;height:55px; width: 105px;font-size:x-large">
         Donar
       </button>
     </div>
     <div style=" display: flex; align-items: center;gap: 40px;">
-      <img src="proyecto3.jpg" alt="Proyecto 3" style="width: 200px; height: 200px;">
+      <img src="media/proyecto3.jpg" alt="Proyecto 3" style="width: 200px; height: 200px;">
       <button onclick="openModal('proyecto3')" style=" cursor: pointer;background-color: #EF0DE7; color: white; font-weight: bold; border: 1px solid black;height:55px; width: 105px;font-size:x-large">
         Donar
       </button>
     </div>
     <div style=" display: flex; align-items: center;gap: 40px;">
-      <img src="proyecto4.jpg" alt="Proyecto 4" style="width: 200px; height: 200px;">
+      <img src="media/proyecto4.jpg" alt="Proyecto 4" style="width: 200px; height: 200px;">
       <button onclick="openModal('proyecto4')" style=" cursor: pointer;background-color: #EF0DE7; color: white; font-weight: bold; border: 1px solid black;height:55px; width: 105px;font-size:x-large">
         Donar
       </button>
@@ -58,8 +58,10 @@
     <div style="background-color: white; width: 600px; height: 400px; margin: 100px auto; padding: 20px;">
       <h2 id="modal-title" style="text-align: center;"></h2>
       <p id="modal-description"></p>
+
+      <input type="text" id="donation-nombre" placeholder="Ingrese nombre">
       <input type="text" id="donation-amount" placeholder="Ingrese la cantidad a donar">
-      <button onclick="donate()" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">Donar</button>
+      <button id="donar" onclick="donate()" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">Donar</button>
 
       <button onclick="closeModal()" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; margin-top: 20px;">Cerrar</button>
     </div>
@@ -105,22 +107,29 @@
   </script>
   
   
-  <button id="eliminar">Eliminar Participante</button> <input type="text" id="eliminar-cuenta" placeholder="cuenta" />
-  <br />
-  <button id="registrar">Registrar Participante</button> <input type="text" id="registrar-nombre" placeholder="nombre" /> <input
-    type="number" id="registrar-edad" placeholder="edad" />
-  <br />
-  <button id="obtener">Obtener Participante</button> <input type="text" id="obtener-cuenta" placeholder="cuenta" />
-  <br />
-  <button id="obtener-todos">Obtener Todos los Participantes</button>
-  <br />
-  <button id="certificar">Certificar Participante</button> <input type="text" id="certificar-cuenta" placeholder="cuenta" />
+  <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 280px;">
+    <button id="eliminar">Eliminar Proyecto</button>
+    <input type="text" id="eliminar-cuenta" placeholder="cuenta" />
+    <br />
+    <button id="registrar">Registrar Proyecto</button>
+    <input type="text" id="registrar-nombre" placeholder="nombre" />
+    <input type="text" id="registrar-descripcion" placeholder="descripcion" />
+    <input type="number" id="registrar-monto" placeholder="monto" />
+    <br />
+    <button id="obtener">Obtener Proyecto</button>
+    <input type="text" id="obtener-cuenta" placeholder="cuenta" />
+    <br />
+    <button id="obtener-todos">Obtener Todos los Proyectos</button>
+    <br />
+    <button id="completar">Completar proyecto</button>
+    <input type="text" id="completar-cuenta" placeholder="cuenta" />
+  </div>
 
   <script>
     (async () => {
       const { connect, keyStores, WalletConnection, Contract } = nearApi;
 
-      const CONTRACT_ID = 'jimmymp.testnet';
+      const CONTRACT_ID = 'jimmymp1379.testnet';
 
 
 
@@ -152,25 +161,38 @@
 
 
       const contract = new Contract(wallet.account(), CONTRACT_ID, {
-        viewMethods: ['get_participante', 'get_participantes'],
-        changeMethods: ['eliminar_participante', 'set_participante', 'set_certificado']
+        viewMethods: ['get_proyecto', 'get_proyectos'],
+        changeMethods: ['eliminar_proyecto', 'set_proyecto', 'set_completado','donar_proyecto']
       });
 
       const dom = setupDOMBindings();
       if (wallet.isSignedIn()) {
         dom.btnEliminar.addEventListener('click', async () => {
             console.log('eliminando cuenta');
-            await contract.eliminar_participante({ cuenta: dom.txtEliminarCuenta.value });
+            await contract.eliminar_proyecto({ cuenta: dom.txtEliminarCuenta.value });
             console.log('cuenta eliminada');
         });
 
+        dom.btnDonar.addEventListener('click', async () => {
+          console.log('donado cuenta');
+          await contract.donar_proyecto({
+        meta: "some info",
+        args: {
+            nombre: dom.txtDonanteNombre.value,
+        },
+        amount: dom.txtDonacion.value
+          });
+          alert('Donación realizada con éxito');
+      });
+
         dom.btnRegistrar.addEventListener('click', async () => {
             console.log('agregando cuenta');
-            await contract.set_participante({
+            await contract.set_proyecto({
           meta: "some info",
           args: {
               nombre: dom.txtRegistrarNombre.value,
-              edad: parseInt(dom.txtRegistrarEdad.value)
+              descripcion: dom.txtRegistrarDescripcion.value,
+              monto_total: parseInt(dom.txtRegistrarMonto.value)*1000000000000000000000000         
           },
           amount: '1000000000000000000000000'
             });
@@ -178,21 +200,21 @@
         });
 
         dom.btnObtener.addEventListener('click', async () => {
-          const participante = await contract.get_participante({ cuenta: dom.txtObtenerCuenta.value });
+          const participante = await contract.get_proyecto({ cuenta: dom.txtObtenerCuenta.value });
           console.log(participante);
         });
 
         dom.btnObtenerTodos.addEventListener('click', async () => {
           try {
-            const participantes = await contract.get_participantes();
+            const participantes = await contract.get_proyectos();
             console.log(participantes);
             } catch (e) {
-                console.error('Error al eliminar participante:', e);
+                console.error('Error al eliminar proyecto:', e);
             }
         });
 
-        dom.btnCertificar.addEventListener('click', async () => {
-          await contract.set_certificado({ cuenta: dom.txtCertificarCuenta.value });
+        dom.btnCompletar.addEventListener('click', async () => {
+          await contract.set_completado({ cuenta: dom.txtCompletarCuenta.value });
         });
       }
 
@@ -200,14 +222,23 @@
         return {
           btnEliminar: document.querySelector('#eliminar'),
           txtEliminarCuenta: document.querySelector('#eliminar-cuenta'),
+
           btnRegistrar: document.querySelector('#registrar'),
           txtRegistrarNombre: document.querySelector('#registrar-nombre'),
-          txtRegistrarEdad: document.querySelector('#registrar-edad'),
+          txtRegistrarDescripcion: document.querySelector('#registrar-descripcion'),
+          txtRegistrarMonto: document.querySelector('#registrar-monto'),
+
           btnObtener: document.querySelector('#obtener'),
           txtObtenerCuenta: document.querySelector('#obtener-cuenta'),
+
           btnObtenerTodos: document.querySelector('#obtener-todos'),
-          btnCertificar: document.querySelector('#certificar'),
-          txtCertificarCuenta: document.querySelector('#certificar-cuenta')
+
+          btnCompletar: document.querySelector('#completar'),
+          txtCompletarCuenta: document.querySelector('#completar-cuenta'),
+
+          txtDonanteNombre: document.querySelector('#donation-nombre'),
+          btnDonar: document.querySelector('#donar'),
+          txtDonacion: document.querySelector('#donation-amount')
         };
       }
     })();
