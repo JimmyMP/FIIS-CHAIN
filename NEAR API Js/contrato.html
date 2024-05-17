@@ -1,21 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Near Contract Methods</title>
+  <title>BlockChange</title>
   <script src="https://cdn.jsdelivr.net/npm/near-api-js@0.45.1/dist/near-api-js.min.js"></script>
+  <script src="styles.css"></script>
 </head>
 
 <body>
-  <nav>
-    <div><a href="index.html">home</a></div>
-    <div><a href="login.html">login</a></div>
-    <div><a href="contrato.html">contract</a></div>
-  </nav>
+    <nav style="height: 50px; background-color: #FFD119; display: flex; align-items: center; width:100%; border: 1px solid black;">
+      <div style="padding: 10px 20px"><img src="logo.png" alt="Logo" style="width: 50px; height: 50px;"></div>
+      <div style="flex-grow: 1; display: flex; justify-content: center;">
+        <a href="index.html" style="margin: 0 10px; text-decoration:none;">Home</a>
+        <a href="nosotros.html" style="margin: 0 10px; text-decoration:none;">Nosotros</a>
+        <a href="objetivos.html" style="margin: 0 10px; text-decoration:none;">Objetivos</a>
+        <a href="novedades.html" style="margin: 0 10px; text-decoration:none;">Novedades</a>
+        <a href="Voluntariado.html" style="margin: 0 10px; text-decoration:none;">Voluntariado</a>
+        <a href="contacto.html" style="margin: 0 10px; text-decoration:none;">Contacto</a>
+      </div>
+      <div style="padding: 10px 20px"><button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">Login</button></div>
+    </nav>
   <hr />
+
+  <h1 style="text-align: center; font-weight: bold; font-family: Racing Sans One, sans-serif;">CAUSAS BENÉFICAS</h1>
+  
+  <div style="width: 50%; display: flex; justify-content: center; gap: 40px; flex-wrap:wrap; margin: 0 auto;">
+    <div style=" display: flex; align-items: center;gap: 40px;">
+      <img src="proyecto1.jpg" alt="Proyecto 1" style="width: 200px; height: 200px;">
+      <button onclick="openModal('proyecto1')" style="cursor: pointer;background-color: #EF0DE7; color: white; font-weight: bold; border: 1px solid black;height:55px; width: 105px;font-size:x-large">
+        Donar
+      </button>
+    </div>
+    <div style="display: flex; align-items: center;gap: 40px;">
+      <img src="proyecto2.jpg" alt="Proyecto 2" style="width: 200px; height: 200px;">
+      <button onclick="openModal('proyecto2')" style=" cursor: pointer;background-color: #EF0DE7; color: white; font-weight: bold; border: 1px solid black;height:55px; width: 105px;font-size:x-large">
+        Donar
+      </button>
+    </div>
+    <div style=" display: flex; align-items: center;gap: 40px;">
+      <img src="proyecto3.jpg" alt="Proyecto 3" style="width: 200px; height: 200px;">
+      <button onclick="openModal('proyecto3')" style=" cursor: pointer;background-color: #EF0DE7; color: white; font-weight: bold; border: 1px solid black;height:55px; width: 105px;font-size:x-large">
+        Donar
+      </button>
+    </div>
+    <div style=" display: flex; align-items: center;gap: 40px;">
+      <img src="proyecto4.jpg" alt="Proyecto 4" style="width: 200px; height: 200px;">
+      <button onclick="openModal('proyecto4')" style=" cursor: pointer;background-color: #EF0DE7; color: white; font-weight: bold; border: 1px solid black;height:55px; width: 105px;font-size:x-large">
+        Donar
+      </button>
+    </div>
+  </div>
+
+  <div id="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 999;">
+    <div style="background-color: white; width: 600px; height: 400px; margin: 100px auto; padding: 20px;">
+      <h2 id="modal-title" style="text-align: center;"></h2>
+      <p id="modal-description"></p>
+
+      <button onclick="closeModal()" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; margin-top: 20px;">Cerrar</button>
+    </div>
+  </div>
+
+  <script>
+    function openModal(proyecto) {
+      const modal = document.getElementById('modal');
+      const title = document.getElementById('modal-title');
+      const description = document.getElementById('modal-description');
+
+      // Set the title and description based on the selected project
+      switch (proyecto) {
+        case 'proyecto1':
+          title.textContent = 'Girl Up';
+          description.textContent = 'El mundo necesita nuevas soluciones y liderazgo ahora. Girl Up está ampliando las habilidades, los derechos y las oportunidades de liderazgo de las niñas. Estamos cambiando la cara del liderazgo para las generaciones venideras.';
+          break;
+        case 'proyecto2':
+          title.textContent = 'Woman Intech Perú';
+          description.textContent = 'Somos una comunidad dinámica e inclusiva dedicada a fomentar el empoderamiento, la diversidad y la innovación dentro del sector tecnológico. Si eres una profesional experimentada, una estudiante que aspira a ingresar al campo de la tecnología o una apasionada defensora de la igualdad de género, Women in Tech Perú te da la bienvenida. A través de eventos de networking, programas de mentoría e iniciativas de desarrollo de habilidades, para sobresalir en carreras relacionadas con la tecnología y dar forma al futuro de la industria tecnológica en Perú y más allá.';
+          break;
+        case 'proyecto3':
+          title.textContent = 'Girls Who Code';
+          description.textContent = 'Girls Who Code es una organización que valora la diversidad, la equidad y la inclusión como esenciales para nuestra misión.';
+          break;
+        case 'proyecto4':
+          title.textContent = 'WOMEN IN STEM';
+          description.textContent = 'Nuestro programa de tutoría empareja a profesionales de STEM y estudiantes universitarios con estudiantes individuales de secundaria actuales en función de intereses y objetivos compartidos. Los mentores se reunirán con su aprendiz una o dos veces al mes para una reunión de Zoom de 30 minutos. Esto se programará en función de los horarios disponibles del mentor y el aprendiz y es flexible. La red de mujeres de WiSTEM de todas las edades, carreras e intereses es nuestro recurso más importante. Poder conectar con otros estudiantes como tú y mujeres en diferentes etapas de todos los campos STEM es una gran oportunidad de crecimiento y colaboración.';
+          break;
+        default:
+          title.textContent = '';
+          description.textContent = '';
+          break;
+      }
+
+      modal.style.display = 'block';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      modal.style.display = 'none';
+    }
+  </script>
+  
+  
   <button id="eliminar">Eliminar Participante</button> <input type="text" id="eliminar-cuenta" placeholder="cuenta" />
   <br />
   <button id="registrar">Registrar Participante</button> <input type="text" id="registrar-nombre" placeholder="nombre" /> <input
@@ -78,14 +165,24 @@
         dom.btnRegistrar.addEventListener('click', async () => {
             console.log('agregando cuenta');
             await contract.set_participante({
-                meta: "some info",
-                args: {
-                    nombre: dom.txtRegistrarNombre.value,
-                    edad: parseInt(dom.txtRegistrarEdad.value)
-                },
-                amount: '1000000000000000000000000'
+          meta: "some info",
+          args: {
+              nombre: dom.txtRegistrarNombre.value,
+              edad: parseInt(dom.txtRegistrarEdad.value)
+          },
+          amount: '1000000000000000000000000'
             });
             console.log('cuenta agregada');
+            
+            // Display the registered participant in HTML
+            const participante = await contract.get_participante({ cuenta: dom.txtRegistrarNombre.value });
+            const participanteContainer = document.getElementById('participante-container');
+            const participanteElement = document.createElement('div');
+            participanteElement.innerHTML = `
+          <h3>${participante.nombre}</h3>
+          <p>Edad: ${participante.edad}</p>
+            `;
+            participanteContainer.appendChild(participanteElement);
         });
 
         dom.btnObtener.addEventListener('click', async () => {
@@ -120,6 +217,63 @@
           btnCertificar: document.querySelector('#certificar'),
           txtCertificarCuenta: document.querySelector('#certificar-cuenta')
         };
+      }
+    })();
+  </script>
+  <script>
+    (async () => {
+      const NETWORK = 'testnet';
+
+      const { connect, keyStores, WalletConnection } = nearApi;
+
+      const button = document.querySelector('button');
+
+      const near = await connect(config());
+      const wallet = new WalletConnection(near, `${NETWORK}-custom-prefix`); // supports logging in with different keys on the same domain
+
+      if (wallet.isSignedIn()) {
+        const accountId = wallet.getAccountId();
+        button.innerHTML = `Cerrar Sesión`;
+        button.addEventListener('click', signOut);
+      } else {
+        button.addEventListener('click', signIn);
+      }
+
+      // ----------------
+      // Helper functions
+      // ----------------
+
+      function signIn() {
+        wallet.requestSignIn({
+          contractId: NETWORK === 'testnet' ? 'unv.testnet' : 'unv.near',
+          methodNames: []
+        });
+      }
+
+      function signOut() {
+        wallet.signOut();
+        button.innerHTML = 'Login';
+      }
+
+      function config(network = NETWORK) {
+        return {
+          testnet: {
+            networkId: 'testnet',
+            keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+            nodeUrl: 'https://rpc.testnet.near.org',
+            walletUrl: 'https://testnet.mynearwallet.com/',
+            helperUrl: 'https://helper.testnet.near.org',
+            explorerUrl: 'https://testnet.nearblocks.io'
+          },
+          mainnet: {
+            networkId: 'mainnet',
+            keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+            nodeUrl: 'https://rpc.mainnet.near.org',
+            walletUrl: 'https://wallet.mainnet.near.org',
+            helperUrl: 'https://helper.mainnet.near.org',
+            explorerUrl: 'https://nearblocks.io'
+          }
+        }[network];
       }
     })();
   </script>
